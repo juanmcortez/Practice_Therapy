@@ -1,5 +1,4 @@
 ## Practice Therapy
 
 ## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Practice Therapy is open-sourced software licensed under the [GPL-3.0 License](https://www.gnu.org/licenses/gpl-3.0.html).
