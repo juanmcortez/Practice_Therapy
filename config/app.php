@@ -15,6 +15,10 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'description' => env('APP_DESC', 'Laravel'),
+    'author' => env('APP_AUTH', 'Laravel'),
+    'keywords' => env('APP_KEYW', 'Laravel'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -67,7 +71,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIME', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +84,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('APP_LANG', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +97,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => env('APP_FALL', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +110,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => env('APP_FAKE', 'en_US'),
 
     /*
     |--------------------------------------------------------------------------
