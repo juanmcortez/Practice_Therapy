@@ -12,4 +12,13 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/practice_therapy.js', 'public/js')
+    .extract(
+        [
+            'axios',
+            'bootstrap',
+            'jquery',
+            'lodash',
+            'popper.js'
+        ]
+    )
     .sass('resources/assets/sass/practice_therapy.scss', 'public/css');

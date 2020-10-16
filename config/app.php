@@ -19,6 +19,8 @@ return [
     'author' => env('APP_AUTH', 'Laravel'),
     'keywords' => env('APP_KEYW', 'Laravel'),
 
+    'separator' => env('TITL_SEP', ' - '),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

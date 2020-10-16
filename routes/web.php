@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.index');
+    return view('pages.index', ['title' => 'Welcome']);
 });
+
+// All other url's fall into
+Route::get('/{any?}', function () {
+    return view('defaults.pagemodel');
+})->where('any', '.*');

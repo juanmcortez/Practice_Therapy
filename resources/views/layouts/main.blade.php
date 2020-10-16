@@ -27,9 +27,13 @@
         </strong>
     </noscript>
 
-    @yield('content')
+    <div class="container-fluid">
+        @yield('content')
+    </div>
 
     <!-- Scripts -->
+    <script src="{{ secure_asset('js/manifest.js') }}"></script>
+    <script src="{{ secure_asset('js/vendor.js') }}"></script>
     <script src="{{ secure_asset('js/practice_therapy.js') }}" defer></script>
 
     <!-- Extra cripts -->

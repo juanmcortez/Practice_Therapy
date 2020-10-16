@@ -1,0 +1,62 @@
+// Body
+$body-bg: #f8fafc;
+
+// Brands
+$brand-primary: #FE8B28;
+$brand-info: #199994;
+$brand-success: #6EC8CC;
+$brand-warning: #FEDB89;
+$brand-danger: #F72736;
+
+// Typography
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+/*$headings-font-family: 'Bree Serif', serif;
+$font-family-sans-serif: "Open Sans", sans-serif;*/
+$font-size-base: 0.85rem;
+$line-height-base: 1.75;
+$text-color: #1A1B1D;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+
+// General config
+$enable-responsive-font-sizes: true;
+$enable-validation-icons: true;
+$enable-caret: true;
+$enable-transitions: true;
+$enable-gradients: true;
+$enable-shadows: true;
+
+// translation
+$custom-file-text: (
+        en: "Browse",
+        es: "Elegir",
+        pt: "Procurar",
+        fr: "Feuilleter",
+        de: "Schmökern"
+);
+
+// Dropdowns
+$dropdown-min-width: 16rem;
+
+// Forms and alerts
+$state-success-text: lighten($text-color, 30%);
+$state-success-bg: $brand-success;
+
+$state-info-text: lighten($text-color, 30%);
+$state-info-bg: $brand-info;
+
+$state-warning-text: lighten($text-color, 30%);
+$state-warning-bg: $brand-warning;
+
+$state-danger-text: lighten($text-color, 30%);
+$state-danger-bg: $brand-danger;

@@ -1,4 +1,13 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Bree+Serif|Open+Sans&display=swap");
+
+// Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Font-awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+
 
 // Prepare extra config for bootstrap
 @import 'variables';

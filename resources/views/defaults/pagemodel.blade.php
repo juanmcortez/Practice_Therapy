@@ -8,8 +8,8 @@
 
 @section('content')
 <div class="row content">
-    <div class="col text-center">
-        <h1>{{ config('app.name') }}</h1>
+    <div class="col">
+
     </div>
 </div>
 @endsection
