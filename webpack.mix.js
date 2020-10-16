@@ -12,4 +12,4 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/practice_therapy.js', 'public/js')
-    .sass('resources/assets/sass/practice_therapy.scss', 'public/js');
+    .sass('resources/assets/sass/practice_therapy.scss', 'public/css');
