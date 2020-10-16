@@ -21,8 +21,12 @@ class DoctorFactory extends Factory
      */
     public function definition()
     {
+        $rndGender = $this->faker->randomElement(['male', 'female']);
         return [
-            //
+            'first_name' => $this->faker->firstName($rndGender),
+            'middle_name' => $this->faker->firstName($rndGender),
+            'last_name' => $this->faker->lastName,
+            'specialty' => $this->faker->jobTitle
         ];
     }
 }
