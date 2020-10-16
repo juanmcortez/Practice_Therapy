@@ -1,6 +1,10 @@
 @extends('layouts.main')
 
-@section('title', 'Welcome'.config('app.separator'))
+@if(isset($title) && !empty($title))
+@section('title', $title.config('app.separator'))
+@else
+@section('title', '---'.config('app.separator'))
+@endif
 
 @section('content')
 <div class="row content">
