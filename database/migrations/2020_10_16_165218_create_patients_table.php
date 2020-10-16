@@ -15,7 +15,14 @@ class CreatePatientsTable extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
+            $table->string('externalID')->nullable();
+
+            $table->string('first_name', 128)->index();
+            $table->string('middle_name', 128)->nullable();
+            $table->string('last_name', 128)->index();
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

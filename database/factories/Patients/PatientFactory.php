@@ -21,8 +21,12 @@ class PatientFactory extends Factory
      */
     public function definition()
     {
+        $rndGender = $this->faker->randomElement(['male', 'female']);
         return [
-            //
+            'externalID' => $this->faker->randomNumber(8),
+            'first_name' => $this->faker->firstName($rndGender),
+            'middle_name' => $this->faker->firstName($rndGender),
+            'last_name' => $this->faker->lastName
         ];
     }
 }
