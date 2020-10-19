@@ -7,16 +7,22 @@
 @endif
 
 @section('content')
+@php
+foreach ($data as $item) { dd($item->insurances); }
+@endphp
+<!--
 <div class="row content">
     <div class="col text-center">
         <h1>{{ config('app.name') }}</h1>
     </div>
 </div>
+@if(isset($data))
 <div class="row content">
     <div class="col text-center">
         {{ $data->links() }}
     </div>
 </div>
+@endif
 <div class="row content">
     <div class="col text-center">
         @if(isset($data))
@@ -37,11 +43,14 @@
         @endif
     </div>
 </div>
+@if(isset($data))
 <div class="row content">
     <div class="col text-center">
         {{ $data->links() }}
     </div>
 </div>
+@endif
+-->
 @endsection
 
 @push('scripts')
