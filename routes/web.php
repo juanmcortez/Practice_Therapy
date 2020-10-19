@@ -29,6 +29,6 @@ Route::get('list/insurances', [InsuranceController::class, 'index']);
 
 
 // All other url's fall into
-/*Route::get('/{any?}', function () {
+Route::get('/{any?}', function () {
     return view('defaults.pagemodel');
-})->where('any', '.*');*/
+})->where('any', '.*');
