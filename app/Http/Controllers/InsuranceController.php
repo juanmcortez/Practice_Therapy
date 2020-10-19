@@ -14,7 +14,8 @@ class InsuranceController extends Controller
      */
     public function index()
     {
-        //
+        $data = Insurance::orderBy('name')->paginate(config('app.def_pag'));
+        return view('pages.index', ['data' => $data]);
     }
 
     /**

@@ -14,7 +14,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        $data = Patient::orderBy('last_name')->orderBy('first_name')->paginate(config('app.def_pag'));
+        return view('pages.index', ['data' => $data]);
     }
 
     /**
