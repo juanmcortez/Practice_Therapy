@@ -12,6 +12,36 @@
         <h1>{{ config('app.name') }}</h1>
     </div>
 </div>
+<div class="row content">
+    <div class="col text-center">
+        {{ $data->links() }}
+    </div>
+</div>
+<div class="row content">
+    <div class="col text-center">
+        @if(isset($data))
+        @foreach ($data as $item)
+        {{ $item->id.' '.$item->externalID }}
+        <br />
+        @if(isset($item->name))
+        {{ $item->name }}
+        @else
+        {{ $item->last_name.', '.$item->first_name.' '.$item->middle_name }}
+        @endif
+        @if(isset($item->specialty))
+        <br />
+        {{ $item->specialty }}
+        @endif
+        <hr />
+        @endforeach
+        @endif
+    </div>
+</div>
+<div class="row content">
+    <div class="col text-center">
+        {{ $data->links() }}
+    </div>
+</div>
 @endsection
 
 @push('scripts')
