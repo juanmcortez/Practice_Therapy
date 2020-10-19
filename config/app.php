@@ -20,6 +20,7 @@ return [
     'keywords' => env('APP_KEYW', 'Laravel'),
 
     'separator' => env('TITL_SEP', ' - '),
+    'def_pag' => env('DFLT_PAG', 50),
 
     /*
     |--------------------------------------------------------------------------
