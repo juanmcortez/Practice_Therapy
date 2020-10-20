@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Demographics\Address;
 use App\Models\Doctors\Doctor;
+use App\Models\Insurances\AddressInsurance;
 use App\Models\Insurances\Insurance;
 use App\Models\Patients\AddressPatient;
 use App\Models\Patients\InsurancePatient;
@@ -28,9 +29,14 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Creating insurances');
         Insurance::factory()->count($TotalNumOfInsr)->create();
 
+        $this->command->info('Creating insurances addresses');
+        Address::factory()->count($TotalNumOfInsr)->create();
+
+
         // Create Doctors list
         $this->command->info('Creating doctors');
         Doctor::factory()->count($TotalNumOfDocs)->create();
+
 
         // Create Patients with the insurances relations
         $this->command->info('Creating patients');
@@ -39,16 +45,17 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Creating patient addresses');
         Address::factory()->count($TotalNumOfPats)->create();
 
-        // Pivot Insurances / Patients
+
+        // Pivot Insurances / Patients / Addresses
         $this->command->info('Linking');
         foreach (Patient::all() as $patient) {
-            // Add Address
+            // Add Pateint Address
             AddressPatient::factory()
                 ->count(1)
                 ->create(
                     [
                         'patient_id' => $patient->id,
-                        'address_id' => $patient->id,
+                        'address_id' => ($patient->id + 75),
                     ]
                 );
 
@@ -59,7 +66,8 @@ class DatabaseSeeder extends Seeder
                 $randCom = random_int(1, $TotalNumOfInsr);
                 if (!in_array($randCom, $oldIns)) {
                     $oldIns[] = $randCom;
-                    InsurancePatient::factory()
+                    // Add insurance to patient
+                    $insurance = InsurancePatient::factory()
                         ->count(1)
                         ->create(
                             [
@@ -67,6 +75,17 @@ class DatabaseSeeder extends Seeder
                                 'insurance_id' => $randCom,
                             ]
                         );
+
+                    // Add address to insurance
+                    if (!AddressInsurance::where('insurance_id', $randCom)->first()) {
+                        AddressInsurance::factory()
+                            ->count(1)
+                            ->create(
+                                [
+                                    'insurance_id' => $randCom
+                                ]
+                            );
+                    }
                 }
             }
         }
