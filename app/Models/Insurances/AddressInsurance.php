@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Patients;
+namespace App\Models\Insurances;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class InsurancePatient extends Pivot
+class AddressInsurance extends Pivot
 {
     use HasFactory;
 }
