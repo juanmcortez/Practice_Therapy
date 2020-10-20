@@ -25,6 +25,7 @@
 </div>
 
 @foreach ($data as $item)
+<br /><br /><br />
 <div class="row content">
     <div class="col text-center">
         {{ $item->id }}
@@ -43,18 +44,45 @@
 
 @if(isset($item->insurances))
 @foreach ($item->insurances as $key => $insurance)
+<hr />
 <div class="row content">
     <div class="col text-left">
         Ins {{ $key+1 }}: <span class="text-muted">{{ $insurance->name }}</span>
     </div>
 </div>
+@foreach ($insurance->addresses as $address)
+<div class="row content">
+    <div class="col text-right">
+        Address:
+    </div>
+    <div class="col text-left">
+        <span class="text-muted">{{ $address->main }}</span>
+    </div>
+    <div class="col text-left">
+        <span class="text-muted">{{ $address->extended }}</span>
+    </div>
+    <div class="col text-left">
+        <span class="text-muted">
+            {{ $address->city.', '.$address->state.' '.$address->zip }}
+        </span>
+    </div>
+    <div class="col text-left">
+        <span class="text-muted">{{ $address->country }}</span>
+    </div>
+</div>
+@endforeach
 @endforeach
 @endif
 
+@if(isset($item->addresses))
 @foreach ($item->addresses as $address)
+<hr />
 <div class="row content">
+    <div class="col text-right">
+        Patient address:
+    </div>
     <div class="col text-left">
-        Address: <span class="text-muted">{{ $address->main }}</span>
+        <span class="text-muted">{{ $address->main }}</span>
     </div>
     <div class="col text-left">
         <span class="text-muted">{{ $address->extended }}</span>
@@ -67,6 +95,7 @@
     </div>
 </div>
 @endforeach
+@endif
 
 @if(isset($item->specialty))
 <div class="row content">
