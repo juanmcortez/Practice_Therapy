@@ -21,7 +21,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('list/patients', [PatientController::class, 'index']);
+Route::get('list/patients', [PatientController::class, 'index'])->name('patients');
+Route::get('list/patients/{patient?}', [PatientController::class, 'show'])->name('patients.detail');
 
 Route::get('list/doctors', [DoctorController::class, 'index']);
 
