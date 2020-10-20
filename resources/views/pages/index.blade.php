@@ -41,10 +41,29 @@
     </div>
 </div>
 
+@if(isset($item->insurances))
 @foreach ($item->insurances as $key => $insurance)
 <div class="row content">
     <div class="col text-left">
         Ins {{ $key+1 }}: <span class="text-muted">{{ $insurance->name }}</span>
+    </div>
+</div>
+@endforeach
+@endif
+
+@foreach ($item->addresses as $address)
+<div class="row content">
+    <div class="col text-left">
+        Address: <span class="text-muted">{{ $address->main }}</span>
+    </div>
+    <div class="col text-left">
+        <span class="text-muted">{{ $address->extended }}</span>
+    </div>
+    <div class="col text-left">
+        <span class="text-muted">{{ $address->city.', '.$address->state.' '.$address->zip }}</span>
+    </div>
+    <div class="col text-left">
+        <span class="text-muted">{{ $address->country }}</span>
     </div>
 </div>
 @endforeach
