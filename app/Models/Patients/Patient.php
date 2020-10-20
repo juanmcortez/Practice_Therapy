@@ -2,6 +2,7 @@
 
 namespace App\Models\Patients;
 
+use App\Models\Demographics\Address;
 use App\Models\Insurances\Insurance;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,5 +16,11 @@ class Patient extends Model
     public function insurances()
     {
         return $this->belongsToMany(Insurance::class);
+    }
+
+    // This relationship uses a pivot table
+    public function addresses()
+    {
+        return $this->belongsToMany(Address::class);
     }
 }
