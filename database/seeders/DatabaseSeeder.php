@@ -7,6 +7,7 @@ use App\Models\Demographics\Phone;
 use App\Models\Doctors\Doctor;
 use App\Models\Insurances\AddressInsurance;
 use App\Models\Insurances\Insurance;
+use App\Models\Insurances\InsurancePhone;
 use App\Models\Patients\AddressPatient;
 use App\Models\Patients\InsurancePatient;
 use App\Models\Patients\Patient;
@@ -33,6 +34,9 @@ class DatabaseSeeder extends Seeder
 
         $this->command->info('Creating insurances addresses');
         Address::factory()->count($TotalNumOfInsr)->create();
+
+        $this->command->info('Creating insurances phones');
+        Phone::factory()->count($TotalNumOfInsr)->create();
 
 
         // Create Doctors list
@@ -94,6 +98,15 @@ class DatabaseSeeder extends Seeder
                     // Add address to insurance
                     if (!AddressInsurance::where('insurance_id', $randCom)->first()) {
                         AddressInsurance::factory()
+                            ->count(1)
+                            ->create(
+                                [
+                                    'insurance_id' => $randCom
+                                ]
+                            );
+
+                        // Add Insurance Phone
+                        InsurancePhone::factory()
                             ->count(1)
                             ->create(
                                 [
