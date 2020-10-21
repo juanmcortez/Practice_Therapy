@@ -34,7 +34,7 @@
                     <i class="fa fa-eye"></i>
                 </a>
             </td>
-            <td class="text-center"> -- </td>
+            <td class="text-center">{{ $item->cms_id }}</td>
             <td>{{ $item->name }}</td>
             <td class="text-center">
                 @if(!empty($item->phones->first()))
@@ -50,9 +50,15 @@
                 --
                 @endif
             </td>
-            <td class="text-center"> -- </td>
-            <td class="text-center"> -- </td>
-            <td class="text-center"> -- </td>
+            <td class="text-center text-uppercase">
+                @if(!empty($item->x12_partner))
+                {{ $item->x12_partner }}
+                @else
+                --
+                @endif
+            </td>
+            <td class="text-center text-uppercase">{{ $item->financial_class }}</td>
+            <td class="text-center text-uppercase">{{ $item->payment_code }}</td>
         </tr>
         @endforeach
     </tbody>

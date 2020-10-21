@@ -25,7 +25,9 @@ class Insurance extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'pivot'
+        'id', 'attention', 'group', 'name', 'default_effective',
+        'default_termination', 'participating', 'do_not_bill', 'do_not_import', 'cms_id',
+        'payer_type', 'x12_partner', 'financial_class', 'payment_code', 'pivot'
     ];
 
     /**
