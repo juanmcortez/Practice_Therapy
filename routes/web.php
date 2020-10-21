@@ -27,6 +27,7 @@ Route::get('list/patients/{patient?}', [PatientController::class, 'show'])->name
 Route::get('list/doctors', [DoctorController::class, 'index']);
 
 Route::get('list/insurances', [InsuranceController::class, 'index']);
+Route::get('list/insurances/{insurance?}', [InsuranceController::class, 'show'])->name('insurances.detail');
 
 
 // All other url's fall into

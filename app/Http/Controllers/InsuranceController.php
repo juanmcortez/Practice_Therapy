@@ -15,7 +15,18 @@ class InsuranceController extends Controller
     public function index()
     {
         $data = Insurance::orderBy('name')->paginate(config('app.def_pag'));
-        return view('pages.index', ['data' => $data, 'title' => 'Insurances list']);
+        return view('pages.list.insurances', ['data' => $data, 'title' => 'Insurances list']);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Insurances\Insurance  $insurance
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Insurance $insurance)
+    {
+        return view('pages.insurance.show', ['insurance' => $insurance, 'title' => $insurance->name]);
     }
 
     /**
@@ -35,17 +46,6 @@ class InsuranceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Insurances\Insurance  $insurance
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Insurance $insurance)
     {
         //
     }
