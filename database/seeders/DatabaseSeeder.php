@@ -6,6 +6,7 @@ use App\Models\Demographics\Address;
 use App\Models\Demographics\Phone;
 use App\Models\Doctors\AddressDoctor;
 use App\Models\Doctors\Doctor;
+use App\Models\Doctors\DoctorPhone;
 use App\Models\Insurances\AddressInsurance;
 use App\Models\Insurances\Insurance;
 use App\Models\Insurances\InsurancePhone;
@@ -47,6 +48,9 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Creating doctors addresses');
         Address::factory()->count($TotalNumOfDocs)->create();
 
+        $this->command->info('Creating doctors phones');
+        Phone::factory()->count($TotalNumOfDocs)->create();
+
 
         // Create Patients with the insurances relations
         $this->command->info('Creating patients');
@@ -70,6 +74,16 @@ class DatabaseSeeder extends Seeder
                     [
                         'doctor_id' => $doctor->id,
                         'address_id' => ($doctor->id + $TotalNumOfInsr),
+                    ]
+                );
+
+            // Add Doctor Phones
+            DoctorPhone::factory()
+                ->count(1)
+                ->create(
+                    [
+                        'doctor_id' => $doctor->id,
+                        'phone_id' => ($doctor->id + $TotalNumOfInsr),
                     ]
                 );
         }
