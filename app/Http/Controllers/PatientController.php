@@ -15,7 +15,18 @@ class PatientController extends Controller
     public function index()
     {
         $data = Patient::orderBy('last_name')->orderBy('first_name')->paginate(config('app.def_pag'));
-        return view('pages.index', ['data' => $data, 'title' => 'Patients list']);
+        return view('pages.list.patients', ['data' => $data, 'title' => 'Patients list']);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Patients\Patient  $patient
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Patient $patient)
+    {
+        return view('pages.patient.show', ['patient' => $patient, 'title' => $patient->last_name . ', ' . $patient->first_name . ' ' . $patient->middle_name]);
     }
 
     /**
@@ -35,17 +46,6 @@ class PatientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Patients\Patient  $patient
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Patient $patient)
     {
         //
     }

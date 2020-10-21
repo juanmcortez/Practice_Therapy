@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Address extends Model
+class Phone extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -23,7 +23,7 @@ class Address extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'main', 'extended', 'city',
-        'state', 'zip', 'country', 'pivot'
+        'id', 'type', 'code', 'area',
+        'init', 'ends'
     ];
 }
