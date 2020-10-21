@@ -49,7 +49,8 @@ class DatabaseSeeder extends Seeder
         Address::factory()->count($TotalNumOfDocs)->create();
 
         $this->command->info('Creating doctors phones');
-        Phone::factory()->count($TotalNumOfDocs)->create();
+        Phone::factory()->count($TotalNumOfDocs)->create(['type' => 'office']);
+        Phone::factory()->count($TotalNumOfDocs)->create(['type' => 'fax']);
 
 
         // Create Patients with the insurances relations
@@ -86,6 +87,14 @@ class DatabaseSeeder extends Seeder
                         'phone_id' => ($doctor->id + $TotalNumOfInsr),
                     ]
                 );
+            DoctorPhone::factory()
+                ->count(1)
+                ->create(
+                    [
+                        'doctor_id' => $doctor->id,
+                        'phone_id' => ($doctor->id + $TotalNumOfInsr + $TotalNumOfInsr),
+                    ]
+                );
         }
 
         foreach (Patient::all() as $patient) {
@@ -105,7 +114,7 @@ class DatabaseSeeder extends Seeder
                 ->create(
                     [
                         'patient_id' => $patient->id,
-                        'phone_id' => ($patient->id + $TotalNumOfInsr),
+                        'phone_id' => ($patient->id + $TotalNumOfInsr + $TotalNumOfDocs + $TotalNumOfDocs),
                     ]
                 );
 
