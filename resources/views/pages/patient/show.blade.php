@@ -31,6 +31,10 @@ Insurance {{ $key+1 }}
 <br />
 {{ $address }}
 @endforeach
+@foreach ($insurance->phones as $phone)
+<br />
+{{ $phone }}
+@endforeach
 <hr />
 @endforeach
 @endif
