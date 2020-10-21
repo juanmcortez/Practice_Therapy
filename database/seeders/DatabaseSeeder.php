@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Demographics\Address;
 use App\Models\Demographics\Phone;
+use App\Models\Doctors\AddressDoctor;
 use App\Models\Doctors\Doctor;
+use App\Models\Doctors\DoctorPhone;
 use App\Models\Insurances\AddressInsurance;
 use App\Models\Insurances\Insurance;
 use App\Models\Insurances\InsurancePhone;
@@ -43,6 +45,13 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Creating doctors');
         Doctor::factory()->count($TotalNumOfDocs)->create();
 
+        $this->command->info('Creating doctors addresses');
+        Address::factory()->count($TotalNumOfDocs)->create();
+
+        $this->command->info('Creating doctors phones');
+        Phone::factory()->count($TotalNumOfDocs)->create(['type' => 'office']);
+        Phone::factory()->count($TotalNumOfDocs)->create(['type' => 'fax']);
+
 
         // Create Patients with the insurances relations
         $this->command->info('Creating patients');
@@ -55,8 +64,39 @@ class DatabaseSeeder extends Seeder
         Phone::factory()->count($TotalNumOfPats)->create();
 
 
-        // Pivot Insurances / Patients / Addresses
+        // Pivot Insurances / Patients / Addresses / Phones
         $this->command->info('Linking');
+
+        foreach (Doctor::all() as $doctor) {
+            // Add Doctor Address
+            AddressDoctor::factory()
+                ->count(1)
+                ->create(
+                    [
+                        'doctor_id' => $doctor->id,
+                        'address_id' => ($doctor->id + $TotalNumOfInsr),
+                    ]
+                );
+
+            // Add Doctor Phones
+            DoctorPhone::factory()
+                ->count(1)
+                ->create(
+                    [
+                        'doctor_id' => $doctor->id,
+                        'phone_id' => ($doctor->id + $TotalNumOfInsr),
+                    ]
+                );
+            DoctorPhone::factory()
+                ->count(1)
+                ->create(
+                    [
+                        'doctor_id' => $doctor->id,
+                        'phone_id' => ($doctor->id + $TotalNumOfInsr + $TotalNumOfInsr),
+                    ]
+                );
+        }
+
         foreach (Patient::all() as $patient) {
             // Add Patient Address
             AddressPatient::factory()
@@ -64,7 +104,7 @@ class DatabaseSeeder extends Seeder
                 ->create(
                     [
                         'patient_id' => $patient->id,
-                        'address_id' => ($patient->id + 75),
+                        'address_id' => ($patient->id + $TotalNumOfInsr + $TotalNumOfDocs),
                     ]
                 );
 
@@ -74,7 +114,7 @@ class DatabaseSeeder extends Seeder
                 ->create(
                     [
                         'patient_id' => $patient->id,
-                        'phone_id' => ($patient->id + 75),
+                        'phone_id' => ($patient->id + $TotalNumOfInsr + $TotalNumOfDocs + $TotalNumOfDocs),
                     ]
                 );
 
