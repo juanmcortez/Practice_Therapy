@@ -15,28 +15,17 @@
 </div>
 <hr />
 
-@if(isset($patient))
-{{ $patient }}
-<br />
-<hr />
-{{ $patient->address->first() }}
-<br />
-{{ $patient->phones->first() }}
-<hr />
-@foreach ($patient->insurances as $key => $insurance)
-Insurance {{ $key+1 }}
-<br />
+@if(isset($insurance))
 {{ $insurance }}
+<hr />
 @foreach ($insurance->address as $address)
-<br />
 {{ $address }}
+<hr />
 @endforeach
 @foreach ($insurance->phones as $phone)
-<br />
 {{ $phone }}
 @endforeach
 <hr />
-@endforeach
 @endif
 
 @endsection

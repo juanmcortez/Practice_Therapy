@@ -7,6 +7,7 @@ use App\Models\Demographics\Phone;
 use App\Models\Doctors\Doctor;
 use App\Models\Insurances\AddressInsurance;
 use App\Models\Insurances\Insurance;
+use App\Models\Insurances\InsurancePhone;
 use App\Models\Patients\AddressPatient;
 use App\Models\Patients\InsurancePatient;
 use App\Models\Patients\Patient;
@@ -33,6 +34,9 @@ class DatabaseSeeder extends Seeder
 
         $this->command->info('Creating insurances addresses');
         Address::factory()->count($TotalNumOfInsr)->create();
+
+        $this->command->info('Creating insurances phones');
+        Phone::factory()->count($TotalNumOfInsr)->create(['type' => 'office']);
 
 
         // Create Doctors list
@@ -70,7 +74,7 @@ class DatabaseSeeder extends Seeder
                 ->create(
                     [
                         'patient_id' => $patient->id,
-                        'phone_id' => $patient->id,
+                        'phone_id' => ($patient->id + 75),
                     ]
                 );
 
@@ -82,7 +86,7 @@ class DatabaseSeeder extends Seeder
                 if (!in_array($randCom, $oldIns)) {
                     $oldIns[] = $randCom;
                     // Add insurance to patient
-                    $insurance = InsurancePatient::factory()
+                    InsurancePatient::factory()
                         ->count(1)
                         ->create(
                             [
@@ -97,7 +101,16 @@ class DatabaseSeeder extends Seeder
                             ->count(1)
                             ->create(
                                 [
-                                    'insurance_id' => $randCom
+                                    'insurance_id' => $randCom,
+                                ]
+                            );
+
+                        // Add Insurance Phone
+                        InsurancePhone::factory()
+                            ->count(1)
+                            ->create(
+                                [
+                                    'insurance_id' => $randCom,
                                 ]
                             );
                     }

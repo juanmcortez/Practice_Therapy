@@ -22,7 +22,19 @@ class InsuranceFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->company
+            'attention' => $this->faker->tld,
+            'group' => $this->faker->word,
+            'name' => $this->faker->company,
+            'default_effective' => $this->faker->dateTimeBetween('-5 years', '-1 years'),
+            'default_termination' => $this->faker->dateTimeBetween('-1 years', 'now'),
+            'participating' => $this->faker->boolean,
+            'do_not_bill' => $this->faker->boolean,
+            'do_not_import' => $this->faker->boolean,
+            'cms_id' => $this->faker->randomNumber(6),
+            /*'payer_type' => $this->faker->company,
+            'x12_partner' => $this->faker->company,
+            'financial_class' => $this->faker->company,
+            'payment_code' => $this->faker->company,*/
         ];
     }
 }
