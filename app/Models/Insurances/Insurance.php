@@ -3,6 +3,7 @@
 namespace App\Models\Insurances;
 
 use App\Models\Demographics\Address;
+use App\Models\Demographics\Phone;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
