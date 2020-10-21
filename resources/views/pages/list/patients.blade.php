@@ -36,7 +36,9 @@
                 </a>
             </td>
             <td>{{ $item->last_name.', '.$item->first_name.' '.$item->middle_name }}</td>
-            <td class="text-center"> -- </td>
+            <td class="text-center">
+                {{ $item->phones->first()->code.' ('.$item->phones->first()->area.') '.$item->phones->first()->init.'-'.$item->phones->first()->ends }}
+            </td>
             <td class="text-center"> -- </td>
             <td class="text-center"> -- </td>
             <td class="text-center"> -- </td>

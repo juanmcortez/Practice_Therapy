@@ -20,6 +20,7 @@
 <br />
 <hr />
 {{ $patient->address->first() }}
+<br />
 {{ $patient->phones->first() }}
 <hr />
 @foreach ($patient->insurances as $key => $insurance)
