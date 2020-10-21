@@ -15,7 +15,18 @@ class DoctorController extends Controller
     public function index()
     {
         $data = Doctor::orderBy('last_name')->orderBy('first_name')->paginate(config('app.def_pag'));
-        return view('pages.index', ['data' => $data, 'title' => 'Doctors list']);
+        return view('pages.list.doctors', ['data' => $data, 'title' => 'Doctors list']);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Doctors\Doctor  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Doctor $doctor)
+    {
+        return view('pages.doctor.show', ['doctor' => $doctor, 'title' => $doctor->last_name . ', ' . $doctor->first_name . ' ' . $doctor->middle_name]);
     }
 
     /**
@@ -35,17 +46,6 @@ class DoctorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Doctors\Doctor  $doctor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Doctor $doctor)
     {
         //
     }
