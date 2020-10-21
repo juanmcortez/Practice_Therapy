@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         Address::factory()->count($TotalNumOfInsr)->create();
 
         $this->command->info('Creating insurances phones');
-        Phone::factory()->count($TotalNumOfInsr)->create();
+        Phone::factory()->count($TotalNumOfInsr)->create(['type' => 'office']);
 
 
         // Create Doctors list
@@ -74,7 +74,7 @@ class DatabaseSeeder extends Seeder
                 ->create(
                     [
                         'patient_id' => $patient->id,
-                        'phone_id' => $patient->id,
+                        'phone_id' => ($patient->id + 75),
                     ]
                 );
 
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
                 if (!in_array($randCom, $oldIns)) {
                     $oldIns[] = $randCom;
                     // Add insurance to patient
-                    $insurance = InsurancePatient::factory()
+                    InsurancePatient::factory()
                         ->count(1)
                         ->create(
                             [
@@ -101,7 +101,7 @@ class DatabaseSeeder extends Seeder
                             ->count(1)
                             ->create(
                                 [
-                                    'insurance_id' => $randCom
+                                    'insurance_id' => $randCom,
                                 ]
                             );
 
@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
                             ->count(1)
                             ->create(
                                 [
-                                    'insurance_id' => $randCom
+                                    'insurance_id' => $randCom,
                                 ]
                             );
                     }
