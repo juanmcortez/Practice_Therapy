@@ -19,14 +19,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('list/patients', [PatientController::class, 'index'])->name('patients');
-Route::get('list/patients/{patient?}', [PatientController::class, 'show'])->name('patients.detail');
 
-Route::get('list/doctors', [DoctorController::class, 'index']);
-Route::get('list/doctors/{doctor?}', [DoctorController::class, 'show'])->name('doctors.detail');
+Route::prefix('list')->group(function () {
+    Route::name('patients')->group(function () {
+        Route::get('patients', [PatientController::class, 'index']);
+        Route::get('patients/{patient?}', [PatientController::class, 'show'])->name('.detail');
+        Route::get('patients/edit/{patient}', [PatientController::class, 'edit'])->name('.edit');
+    });
 
-Route::get('list/insurances', [InsuranceController::class, 'index']);
-Route::get('list/insurances/{insurance?}', [InsuranceController::class, 'show'])->name('insurances.detail');
+    Route::name('doctors')->group(function () {
+        Route::get('doctors', [DoctorController::class, 'index']);
+        Route::get('doctors/{doctor?}', [DoctorController::class, 'show'])->name('.detail');
+    });
+
+    Route::name('insurances')->group(function () {
+        Route::get('insurances', [InsuranceController::class, 'index']);
+        Route::get('insurances/{insurance?}', [InsuranceController::class, 'show'])->name('.detail');
+    });
+});
 
 
 // All other url's fall into

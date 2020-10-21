@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Insurances\Insurance;
 use App\Models\Patients\Patient;
 use Illuminate\Http\Request;
 
@@ -30,6 +31,22 @@ class PatientController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Patients\Patient  $patient
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Patient $patient)
+    {
+        $insList = Insurance::orderBy('name')->get();
+        return view('pages.patient.edit', [
+            'patient' => $patient,
+            'insList' => $insList,
+            'title' => $patient->last_name . ', ' . $patient->first_name . ' ' . $patient->middle_name
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -46,17 +63,6 @@ class PatientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Patients\Patient  $patient
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Patient $patient)
     {
         //
     }

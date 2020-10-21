@@ -16,6 +16,10 @@
 <hr />
 
 @if(isset($patient))
+<a class="btn btn-primary" href="{{  route('patients.edit', ['patient' => $patient->id]) }}">
+    <i class="fa fa-edit"></i>
+</a>
+<hr />
 {{ $patient }}
 <br />
 <hr />
