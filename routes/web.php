@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\PatientController;
@@ -16,10 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.index', ['title' => 'Welcome']);
-});
-
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('list/patients', [PatientController::class, 'index'])->name('patients');
 Route::get('list/patients/{patient?}', [PatientController::class, 'show'])->name('patients.detail');
