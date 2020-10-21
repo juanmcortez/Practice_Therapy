@@ -3,12 +3,14 @@
 namespace Database\Seeders;
 
 use App\Models\Demographics\Address;
+use App\Models\Demographics\Phone;
 use App\Models\Doctors\Doctor;
 use App\Models\Insurances\AddressInsurance;
 use App\Models\Insurances\Insurance;
 use App\Models\Patients\AddressPatient;
 use App\Models\Patients\InsurancePatient;
 use App\Models\Patients\Patient;
+use App\Models\Patients\PatientPhone;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -45,17 +47,30 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Creating patient addresses');
         Address::factory()->count($TotalNumOfPats)->create();
 
+        $this->command->info('Creating patient phones');
+        Phone::factory()->count($TotalNumOfPats)->create();
+
 
         // Pivot Insurances / Patients / Addresses
         $this->command->info('Linking');
         foreach (Patient::all() as $patient) {
-            // Add Pateint Address
+            // Add Patient Address
             AddressPatient::factory()
                 ->count(1)
                 ->create(
                     [
                         'patient_id' => $patient->id,
                         'address_id' => ($patient->id + 75),
+                    ]
+                );
+
+            // Add Patient Phone
+            PatientPhone::factory()
+                ->count(1)
+                ->create(
+                    [
+                        'patient_id' => $patient->id,
+                        'phone_id' => $patient->id,
                     ]
                 );
 
