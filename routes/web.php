@@ -22,18 +22,18 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::prefix('list')->group(function () {
     Route::name('patients')->group(function () {
-        Route::get('patients', [PatientController::class, 'index']);
+        Route::get('patients', [PatientController::class, 'index'])->name('.list');
         Route::get('patients/{patient?}', [PatientController::class, 'show'])->name('.detail');
         Route::get('patients/edit/{patient}', [PatientController::class, 'edit'])->name('.edit');
     });
 
     Route::name('doctors')->group(function () {
-        Route::get('doctors', [DoctorController::class, 'index']);
+        Route::get('doctors', [DoctorController::class, 'index'])->name('.list');
         Route::get('doctors/{doctor?}', [DoctorController::class, 'show'])->name('.detail');
     });
 
     Route::name('insurances')->group(function () {
-        Route::get('insurances', [InsuranceController::class, 'index']);
+        Route::get('insurances', [InsuranceController::class, 'index'])->name('.list');
         Route::get('insurances/{insurance?}', [InsuranceController::class, 'show'])->name('.detail');
     });
 });
