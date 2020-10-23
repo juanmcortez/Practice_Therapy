@@ -27,8 +27,28 @@
         </strong>
     </noscript>
 
-    <div class="container-fluid">
-        @yield('content')
+    <div class="wrapper">
+
+        <nav id="sidebar" class="hideme">
+            @include('layouts.sidebar')
+        </nav>
+
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                @include('layouts.topbar')
+            </nav>
+
+            @yield('content')
+
+            <footer class="footer">
+                <div class="container">
+                    <p>Sticky footer content</p>
+                </div>
+            </footer>
+
+        </div>
+
     </div>
 
     <!-- Scripts -->
