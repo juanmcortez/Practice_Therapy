@@ -8,13 +8,6 @@
 
 @section('content')
 
-<div class="row content">
-    <div class="col text-center">
-        <h1>{{ $title }}</h1>
-    </div>
-</div>
-<hr />
-
 @if(isset($insurance))
 {{ $insurance }}
 <hr />

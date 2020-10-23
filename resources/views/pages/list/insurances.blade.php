@@ -7,11 +7,6 @@
 @endif
 
 @section('content')
-<div class="row content">
-    <div class="col text-center">
-        <h1>{{ $title }}</h1>
-    </div>
-</div>
 
 @if(isset($data))
 
